@@ -1,6 +1,8 @@
 // import express
 const express = require("express")
 
+const postRouter = require("./routes/postRoutes")
+
 const app = express() // instantiating express, by covention we use app variable name
 
 app.get("/", (req, res) => { // request, response names does not matter, but sequence does [request, response]
@@ -15,6 +17,8 @@ app.get("/hello", (req, res) => {
         data: "Another route named hello"
     })
 })
+
+app.use("/posts", postRouter)
 
 app.listen(3000, () => {
     console.log("Server started")
