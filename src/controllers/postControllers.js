@@ -28,7 +28,7 @@ async function deletePost(postId) {
 
 // named exports
 module.exports = {
-    getPosts, // key and value are the same getPosts: getPosts, so we can just write getPosts
+    getPosts, // key and value are the same "getPosts": getPosts, so we can just write getPosts
     getPost,
     createPost,
     updatePost,
