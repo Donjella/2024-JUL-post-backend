@@ -6,6 +6,8 @@ const postRouter = require("./routes/postRoutes")
 
 const app = express() // instantiating express, by covention we use app variable name
 
+app.use(express.json())
+
 app.get("/", (req, res) => { // request, response names does not matter, but sequence does [request, response]
     // response.send("<h1>Hello World</h1>") //response.send is used to send html
     res.json({
