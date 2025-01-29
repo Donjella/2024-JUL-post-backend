@@ -5,10 +5,12 @@ const mongoose = require("mongoose")
 const postRouter = require("./routes/postRoutes")
 const categoryRouter = require("./routes/categoryRoutes")
 const commentRouter = require("./routes/commentRoutes")
+const logger = require("./middlewares/logger")
 
 const app = express() // instantiating express, by covention we use app variable name
 
 app.use(express.json())
+app.use(logger)
 
 app.get("/", (req, res) => { // request, response names does not matter, but sequence does [request, response]
     // response.send("<h1>Hello World</h1>") //response.send is used to send html
