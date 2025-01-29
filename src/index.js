@@ -4,6 +4,7 @@ const mongoose = require("mongoose")
 
 const postRouter = require("./routes/postRoutes")
 const categoryRouter = require("./routes/categoryRoutes")
+const commentRouter = require("./routes/commentRoutes")
 
 const app = express() // instantiating express, by covention we use app variable name
 
@@ -24,6 +25,7 @@ app.get("/hello", (req, res) => {
 
 app.use("/posts", postRouter)
 app.use("/categories", categoryRouter)
+app.use("/comments", commentRouter)
 
 app.listen(3000, async () => {
     console.log("Server started")
