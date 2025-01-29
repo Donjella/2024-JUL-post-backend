@@ -31,7 +31,8 @@ postRouter.post("/", async (req, res) => {
     const bodyData = {
         title: req.body.title,
         body: req.body.body,
-        is_published: req.body.is_published
+        is_published: req.body.is_published,
+        category_id: req.body.category_id
     }
     const newPost = await createPost(bodyData)
     res.status(201).json(newPost)
@@ -39,17 +40,18 @@ postRouter.post("/", async (req, res) => {
 
 // PATCH - /posts/id
 postRouter.patch("/:postId", async (req, res) => {
-   const bodyData = {
-       title: req.body.title,
-       body: req.body.body,
-       is_published: req.body.is_published
-   }
-   const updatedPost = await updatePost(req.params.postId, bodyData)
-   if (updatedPost) {
-       res.json(updatedPost)
-   } else {
-       res.status(404).json({ error: `Post with id ${req.params.postId} not found` })
-   }
+    const bodyData = {
+        title: req.body.title,
+        body: req.body.body,
+        is_published: req.body.is_published,
+        category_id: req.body.category_id
+    }
+    const updatedPost = await updatePost(req.params.postId, bodyData)
+    if (updatedPost) {
+        res.json(updatedPost)
+    } else {
+        res.status(404).json({ error: `Post with id ${req.params.postId} not found` })
+    }
 })
 
 // DELETE - /posts/id
