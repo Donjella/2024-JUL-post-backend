@@ -8,13 +8,12 @@ const commentRouter = require("./routes/commentRoutes")
 const userRouter = require("./routes/userRoutes")
 const logger = require("./middlewares/logger")
 
-const app = express() // instantiating express, by covention we use app variable name
+const app = express()
 
 app.use(express.json())
 app.use(logger)
 
-app.get("/", (req, res) => { // request, response names does not matter, but sequence does [request, response]
-    // response.send("<h1>Hello World</h1>") //response.send is used to send html
+app.get("/", (req, res) => {
     res.json({
         data: "Hello World!!"
     })
@@ -31,7 +30,6 @@ app.use("/categories", categoryRouter)
 app.use("/comments", commentRouter)
 app.use("/users", userRouter)
 
-
 app.listen(3000, async () => {
     console.log("Server started")
     // mongoose.connect("mongodb://127.0.0.1:27017/blog_db").then(() => {
@@ -39,5 +37,4 @@ app.listen(3000, async () => {
     // })
     await mongoose.connect("mongodb://127.0.0.1:27017/blog_db")
     console.log("Database connected")
-
-}) 
+})

@@ -7,6 +7,7 @@ const {
     updatePost,
     deletePost
 } = require("../controllers/postControllers")
+const auth = require("../middlewares/auth")
 
 const postRouter = express.Router()
 
@@ -18,16 +19,16 @@ postRouter.get("/", async (req, res) => {
 
 // GET a single post - /posts/id
 postRouter.get("/:postId", async (req, res) => {
-   const post = await getPost(req.params.postId)
-   if (post) {
-       res.json(post)
-   } else {
-       res.status(404).json({ error: `Post with id ${req.params.postId} not found` })
-   }
+    const post = await getPost(req.params.postId)
+    if (post) {
+        res.json(post)
+    } else {
+        res.status(404).json({ error: `Post with id ${req.params.postId} not found` })
+    }
 })
 
 // POST - /posts
-postRouter.post("/", async (req, res) => {
+postRouter.post("/", auth, async (req, res) => {
     const bodyData = {
         title: req.body.title,
         body: req.body.body,
@@ -56,13 +57,12 @@ postRouter.patch("/:postId", async (req, res) => {
 
 // DELETE - /posts/id
 postRouter.delete("/:postId", async (req, res) => {
-   const deletedPost = await deletePost(req.params.postId)
-   if (deletedPost) {
-      res.json(deletedPost)
-  } else {
-      res.status(404).json({ error: `Post with id ${req.params.postId} not found` })
-  }
+    const deletedPost = await deletePost(req.params.postId)
+    if (deletedPost) {
+        res.json(deletedPost)
+    } else {
+        res.status(404).json({ error: `Post with id ${req.params.postId} not found` })
+    }
 })
 
-// default export
 module.exports = postRouter
