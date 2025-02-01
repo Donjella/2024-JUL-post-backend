@@ -27,7 +27,7 @@ categoryRouter.get("/:categoryId", async (req, res) => {
 
 // categoryRouter.use(checkIfAdmin)
 
-categoryRouter.post("/", checkIfAdmin, async (req, res) =>{
+categoryRouter.post("/", checkIfAdmin, async (req, res) => {
     const bodyData = {
         title: req.body.title,
         description: req.body.description
