@@ -12,7 +12,11 @@ const PostSchema = mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: "Category"
     },
-    comments: [CommentSchema]
+    comments: [CommentSchema],
+    user_id: {
+        type: mongoose.Types.ObjectId,
+        ref: "User"
+    }
 })
 
 /**
@@ -23,12 +27,11 @@ const PostSchema = mongoose.Schema({
  * }
  */
 
-//model for comment
-const Comment = mongoose.model("comment", CommentSchema)
+const Comment = mongoose.model("Comment", CommentSchema)
 
 const Post = mongoose.model("Post", PostSchema)
 
 module.exports = {
-    Post,
-    Comment
+    Comment,
+    Post
 }
